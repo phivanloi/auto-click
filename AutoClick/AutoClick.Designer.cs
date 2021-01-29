@@ -41,7 +41,7 @@ namespace AutoClick
             this.txtTime.Name = "txtTime";
             this.txtTime.Size = new System.Drawing.Size(393, 27);
             this.txtTime.TabIndex = 0;
-            this.txtTime.Text = "1000";
+            this.txtTime.Text = "60000";
             // 
             // mouseTimer
             // 
