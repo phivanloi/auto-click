@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoClick", "AutoClick.csproj", "{C2F24D67-B0E2-424E-A2AA-F7BE426C500D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2F24D67-B0E2-424E-A2AA-F7BE426C500D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2F24D67-B0E2-424E-A2AA-F7BE426C500D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2F24D67-B0E2-424E-A2AA-F7BE426C500D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2F24D67-B0E2-424E-A2AA-F7BE426C500D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A1D90D64-174D-44AA-A110-4B4266F24DA0}
+	EndGlobalSection
+EndGlobal
