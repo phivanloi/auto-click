@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,6 +15,9 @@ namespace AutoClick
 {
     public partial class AutoClick : Form
     {
+        private const int SW_MAXIMIZE = 3;
+        private const int SW_MINIMIZE = 6;
+
         public AutoClick()
         {
             InitializeComponent();
@@ -36,10 +41,25 @@ namespace AutoClick
 
         private void MouseTimeDo(object sender, EventArgs e)
         {
+            IntPtr hwnd = FindWindowByCaption(IntPtr.Zero, "BlueStacks");
+            ShowWindow(hwnd, SW_MAXIMIZE);
+            Thread.Sleep(200);
+            Point leftTop = new Point(3500, 1950);
+            Cursor.Position = leftTop;
             var mmoutPoint = GetCursorPosition();
             mouse_event((int)MouseEventFlags.LeftDown, mmoutPoint.X, mmoutPoint.Y, 0, 0);
             mouse_event((int)MouseEventFlags.LeftUp, mmoutPoint.X, mmoutPoint.Y, 0, 0);
         }
+
+        [DllImport("user32.dll", EntryPoint = "FindWindow")]
+        public static extern IntPtr FindWindowByCaption(IntPtr ZeroOnly, string lpWindowName);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        [DllImport("user32")]
+        private static extern bool SetForegroundWindow(IntPtr hwnd);
 
         [DllImport("user32.dll")]
         public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
