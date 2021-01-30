@@ -44,7 +44,7 @@ namespace AutoClick
             IntPtr hwnd = FindWindowByCaption(IntPtr.Zero, "BlueStacks");
             ShowWindow(hwnd, SW_MAXIMIZE);
             Thread.Sleep(200);
-            Point leftTop = new Point(3500, 1950);
+            Point leftTop = new Point(int.Parse(txtX.Text), int.Parse(txtY.Text));
             Cursor.Position = leftTop;
             var mmoutPoint = GetCursorPosition();
             mouse_event((int)MouseEventFlags.LeftDown, mmoutPoint.X, mmoutPoint.Y, 0, 0);

@@ -33,13 +33,16 @@ namespace AutoClick
             this.components = new System.ComponentModel.Container();
             this.txtTime = new System.Windows.Forms.TextBox();
             this.mouseTimer = new System.Windows.Forms.Timer(this.components);
+            this.txtX = new System.Windows.Forms.TextBox();
+            this.txtY = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtTime
             // 
-            this.txtTime.Location = new System.Drawing.Point(12, 12);
+            this.txtTime.Location = new System.Drawing.Point(10, 9);
+            this.txtTime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTime.Name = "txtTime";
-            this.txtTime.Size = new System.Drawing.Size(393, 27);
+            this.txtTime.Size = new System.Drawing.Size(344, 23);
             this.txtTime.TabIndex = 0;
             this.txtTime.Text = "60000";
             // 
@@ -47,13 +50,33 @@ namespace AutoClick
             // 
             this.mouseTimer.Tick += new System.EventHandler(this.MouseTimeDo);
             // 
+            // txtX
+            // 
+            this.txtX.Location = new System.Drawing.Point(10, 48);
+            this.txtX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtX.Name = "txtX";
+            this.txtX.Size = new System.Drawing.Size(344, 23);
+            this.txtX.TabIndex = 1;
+            this.txtX.Text = "950";
+            // 
+            // txtY
+            // 
+            this.txtY.Location = new System.Drawing.Point(9, 85);
+            this.txtY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtY.Name = "txtY";
+            this.txtY.Size = new System.Drawing.Size(344, 23);
+            this.txtY.TabIndex = 2;
+            this.txtY.Text = "630";
+            // 
             // AutoClick
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 52);
+            this.ClientSize = new System.Drawing.Size(365, 119);
+            this.Controls.Add(this.txtY);
+            this.Controls.Add(this.txtX);
             this.Controls.Add(this.txtTime);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "AutoClick";
             this.Text = "Tự động click chuột";
@@ -67,6 +90,8 @@ namespace AutoClick
 
         private System.Windows.Forms.TextBox txtTime;
         private System.Windows.Forms.Timer mouseTimer;
+        private System.Windows.Forms.TextBox txtX;
+        private System.Windows.Forms.TextBox txtY;
     }
 }
 
