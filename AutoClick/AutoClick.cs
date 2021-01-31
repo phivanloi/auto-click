@@ -15,8 +15,8 @@ namespace AutoClick
 {
     public partial class AutoClick : Form
     {
-        private const int SW_MAXIMIZE = 3;
-        private const int SW_MINIMIZE = 6;
+        private bool blueStacksIsOpened = false;
+        private int playCount = 0;
 
         public AutoClick()
         {
@@ -25,12 +25,9 @@ namespace AutoClick
 
         private void AutoClick_Resize(object sender, EventArgs e)
         {
-            //if the form is minimized
-            //hide it from the task bar
-            //and show the system tray icon (represented by the NotifyIcon control)
             if (WindowState == FormWindowState.Minimized)
             {
-                mouseTimer.Interval = int.Parse(txtTime.Text);
+                mouseTimer.Interval = blueStacksIsOpened ? int.Parse(txtTime.Text) : 100;
                 mouseTimer.Start();
             }
             if (WindowState == FormWindowState.Maximized || WindowState == FormWindowState.Normal)
@@ -41,15 +38,38 @@ namespace AutoClick
 
         private void MouseTimeDo(object sender, EventArgs e)
         {
-            IntPtr hwnd = FindWindowByCaption(IntPtr.Zero, "BlueStacks");
-            ShowWindow(hwnd, SW_MAXIMIZE);
-            Thread.Sleep(200);
-            Point leftTop = new Point(int.Parse(txtX.Text), int.Parse(txtY.Text));
-            Cursor.Position = leftTop;
-            var mmoutPoint = GetCursorPosition();
-            mouse_event((int)MouseEventFlags.LeftDown, mmoutPoint.X, mmoutPoint.Y, 0, 0);
-            mouse_event((int)MouseEventFlags.LeftUp, mmoutPoint.X, mmoutPoint.Y, 0, 0);
+            if (blueStacksIsOpened)
+            {
+                Point leftTop = new Point(int.Parse(txtX.Text), int.Parse(txtY.Text));
+                Cursor.Position = leftTop;
+                var mmoutPoint = GetCursorPosition();
+                mouse_event((int)MouseEventFlags.LeftDown, mmoutPoint.X, mmoutPoint.Y, 0, 0);
+                mouse_event((int)MouseEventFlags.LeftUp, mmoutPoint.X, mmoutPoint.Y, 0, 0);
+                Thread.Sleep(10000);
+                if (playCount == 0)
+                {
+                    Point leftTop1 = new Point(50, 640);
+                    Cursor.Position = leftTop1;
+                    var mmoutPoint1 = GetCursorPosition();
+                    mouse_event((int)MouseEventFlags.LeftDown, mmoutPoint1.X, mmoutPoint1.Y, 0, 0);
+                    mouse_event((int)MouseEventFlags.LeftUp, mmoutPoint1.X, mmoutPoint1.Y, 0, 0);
+                }
+                mouseTimer.Interval = int.Parse(txtTime.Text);
+                mouseTimer.Start();
+                playCount++;
+            }
+            else
+            {
+                Process.Start(@"cmd.exe ", @"/c D:\GrowCastle.lnk");
+                blueStacksIsOpened = true;
+                mouseTimer.Interval = 20000;
+                mouseTimer.Start();
+            }
         }
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool IsIconic(IntPtr hWnd);
 
         [DllImport("user32.dll", EntryPoint = "FindWindow")]
         public static extern IntPtr FindWindowByCaption(IntPtr ZeroOnly, string lpWindowName);
